@@ -1,8 +1,9 @@
-package org.suhyuk.Response;
+package org.suhyuk.Response.Common;
 
 import lombok.Builder;
 import org.json.JSONObject;
 import org.suhyuk.Abstract.CommonElement;
+import org.suhyuk.Response.MessageText;
 
 
 public class Button extends CommonElement {

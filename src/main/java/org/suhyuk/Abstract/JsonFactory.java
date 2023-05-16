@@ -19,15 +19,16 @@ public abstract class JsonFactory {
      */
     public JSONObject mainJsonObject(String version,JSONArray outputs,JSONArray carousel) {
 
-
         JSONObject jsonObject = new JSONObject();
         JSONObject body = new JSONObject();
 
-        body.put("outputs", Objects.requireNonNull(outputs,"outputs must not be null"));
+        if (outputs.length() > 3 && outputs.length() < 1 && carousel.length() > 10)
+            throw new IllegalArgumentException();
 
         if (!carousel.isEmpty())
             body.put("quickReplies",carousel);
 
+        body.put("outputs",outputs);
 
         jsonObject.put("version",version);
         jsonObject.put("template",body);
