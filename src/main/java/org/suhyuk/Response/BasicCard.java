@@ -17,14 +17,13 @@ public class BasicCard extends JsonFactory   {
 
     private final String thumbnail;
 
-    private final ArrayList<Button> buttons;
+    private final ArrayList<Button> buttons = new ArrayList<>();
 
-    @Builder
-    public BasicCard(String title, String description, String thumbnail,ArrayList<Button> buttons) {
+    private BasicCard(String title, String description, String thumbnail,ArrayList<Button> buttons) {
         this.title = title;
         this.description = description;
         this.thumbnail = Objects.requireNonNull(thumbnail);
-        this.buttons = buttons;
+        this.buttons.addAll(buttons);
     }
 
     @Override
@@ -34,12 +33,13 @@ public class BasicCard extends JsonFactory   {
 
         inner.put("thumbnail",thumbnail);
 
-        if (!title.isEmpty())
+        if (title != null)
             inner.put("title",title);
-        else if (!description.isEmpty())
+        if (description != null)
             inner.put("description",description);
-        else if (!buttons.isEmpty())
+        if (!buttons.isEmpty())
             inner.put("buttons",buttons);
+
 
         return response.put("basicCard",inner);
     }
@@ -47,6 +47,48 @@ public class BasicCard extends JsonFactory   {
     @Override
     public String toString() {
         return createJSON().toString();
+    }
+
+    public static BasicCardBuilder builder() {
+        return new BasicCardBuilder();
+    }
+
+    public static class BasicCardBuilder {
+        private String title;
+        private String description;
+        private String thumbnail;
+        private final ArrayList<Button> buttons = new ArrayList<>();
+
+        BasicCardBuilder() {
+        }
+
+        public BasicCardBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public BasicCardBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public BasicCardBuilder thumbnail(String thumbnail) {
+            this.thumbnail = thumbnail;
+            return this;
+        }
+
+        public BasicCardBuilder buttons(ArrayList<Button> buttons) {
+            this.buttons.addAll(buttons);
+            return this;
+        }
+
+        public BasicCard build() {
+            return new BasicCard(this.title, this.description, this.thumbnail, this.buttons);
+        }
+
+        public String toString() {
+            return "BasicCard.BasicCardBuilder(title=" + this.title + ", description=" + this.description + ", thumbnail=" + this.thumbnail + ", buttons=" + this.buttons + ")";
+        }
     }
 
 }
