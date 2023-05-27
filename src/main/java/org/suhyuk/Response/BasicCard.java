@@ -1,12 +1,13 @@
 package org.suhyuk.Response;
 
-import lombok.Builder;
+
 import org.json.JSONObject;
 import org.suhyuk.Abstract.JsonFactory;
 import org.suhyuk.Response.Common.Button;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class BasicCard extends JsonFactory   {
@@ -33,12 +34,9 @@ public class BasicCard extends JsonFactory   {
 
         inner.put("thumbnail",thumbnail);
 
-        if (title != null)
-            inner.put("title",title);
-        if (description != null)
-            inner.put("description",description);
-        if (!buttons.isEmpty())
-            inner.put("buttons",buttons);
+        Optional.ofNullable(title).ifPresent(t -> inner.put("title",t));
+        Optional.ofNullable(description).ifPresent(d -> inner.put("description",d));
+        Optional.of(buttons).filter(b -> !b.isEmpty()).ifPresent(b -> inner.put("buttons",b));
 
 
         return response.put("basicCard",inner);
