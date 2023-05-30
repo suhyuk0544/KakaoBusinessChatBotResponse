@@ -1,4 +1,17 @@
 package org.suhyuk.Response.Common;
 
-public class ListItem {
+import org.json.JSONObject;
+import org.suhyuk.Abstract.CommonElement;
+
+public class ListItem extends CommonElement {
+
+    private String s;
+
+    /**
+     * @return
+     */
+    @Override
+    public JSONObject createElement() {
+        return null;
+    }
 }
