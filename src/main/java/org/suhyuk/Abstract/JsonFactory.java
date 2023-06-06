@@ -4,9 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
 
-import java.util.Objects;
-
-public abstract class JsonFactory {
+public abstract class JsonFactory implements KakaoChatBotResponseJSONFactory {
 
     public abstract JSONObject createJSON();
 
