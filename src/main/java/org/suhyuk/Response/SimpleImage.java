@@ -14,6 +14,7 @@ public class SimpleImage extends JsonFactory {
 
     @Builder
     public SimpleImage(String imageUrl, String altText) {
+        super(new JSONObject());
         this.imageUrl = Objects.requireNonNull(imageUrl);
         this.altText = Objects.requireNonNull(altText);
     }

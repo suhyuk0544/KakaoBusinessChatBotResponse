@@ -6,6 +6,12 @@ import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
 
 public abstract class JsonFactory implements KakaoChatBotResponseJSONFactory {
 
+    protected final JSONObject jsonObject;
+
+    protected JsonFactory(JSONObject jsonObject) {
+        this.jsonObject = jsonObject;
+    }
+
     public abstract JSONObject createJSON();
 
 

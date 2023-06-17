@@ -4,20 +4,24 @@ import lombok.Builder;
 import org.json.JSONObject;
 import org.suhyuk.Abstract.JsonFactory;
 
+import javax.print.attribute.standard.JobStateReasons;
 import java.util.Objects;
 
 public class SimpleText extends JsonFactory {
 
-    private final String text;
+    public SimpleText() {
+        super(new JSONObject());
+    }
 
-    @Builder
-    public SimpleText(String text) {
-        this.text = Objects.requireNonNull(text);
+    public SimpleText setText(String text){
+
+        jsonObject.put("simpleText",new JSONObject().put("text",text));
+
+        return this;
     }
 
     @Override
     public JSONObject createJSON() {
-        return new JSONObject().put("simpleText",new JSONObject().put("text",text));
+        return jsonObject;
     }
-
 }

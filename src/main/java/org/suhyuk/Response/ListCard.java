@@ -18,6 +18,7 @@ public class ListCard extends JsonFactory {
 
     @Builder
     public ListCard(ListItem header,ArrayList<ListItem> items,ArrayList<Button> buttons) {
+        super(new JSONObject());
         this.header = header;
 
         this.items = items;

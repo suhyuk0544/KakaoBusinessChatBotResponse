@@ -31,6 +31,17 @@ public class CommerceCard extends JsonFactory {
 
     private final ArrayList<Button> buttons = new ArrayList<>();
 
+    public CommerceCard(String description, int price, String currency, int discount, int discountRate, int dicountedPrice, Profile profile) {
+        super(new JSONObject());
+        this.description = description;
+        this.price = price;
+        this.currency = currency;
+        this.discount = discount;
+        this.discountRate = discountRate;
+        this.dicountedPrice = dicountedPrice;
+        this.profile = profile;
+    }
+
 
     /**
      * @return
