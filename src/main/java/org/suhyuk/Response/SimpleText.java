@@ -14,9 +14,7 @@ public class SimpleText extends JsonFactory {
     }
 
     public SimpleText setText(String text){
-
         jsonObject.put("simpleText",new JSONObject().put("text",text));
-
         return this;
     }
 
@@ -24,4 +22,6 @@ public class SimpleText extends JsonFactory {
     public JSONObject createJSON() {
         return jsonObject;
     }
+
+
 }
