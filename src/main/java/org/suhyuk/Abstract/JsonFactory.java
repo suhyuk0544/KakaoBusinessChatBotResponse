@@ -4,6 +4,7 @@ import lombok.NonNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
+import org.suhyuk.Response.SkillVersion;
 
 public abstract class JsonFactory implements KakaoChatBotResponseJSONFactory {
 
@@ -38,6 +39,19 @@ public abstract class JsonFactory implements KakaoChatBotResponseJSONFactory {
         jsonObject.put("version",version);
         jsonObject.put("template",body);
         return jsonObject;
+    }
+
+    public JSONObject createMainJsonObject(){
+
+        JSONObject json = new JSONObject();
+        JSONObject body = new JSONObject();
+
+        body.put("outputs",new JSONArray().put(jsonObject));
+
+        json.put("version", SkillVersion.VERSION2.getVersion());
+        json.put("template",body);
+
+        return json;
     }
 
     @Override
