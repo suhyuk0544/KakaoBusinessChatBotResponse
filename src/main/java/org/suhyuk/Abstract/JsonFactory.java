@@ -14,6 +14,7 @@ public abstract class JsonFactory implements KakaoChatBotResponseJSONFactory {
         this.jsonObject = jsonObject;
     }
 
+    // 이거 switch 문 써서 관리 고고헛
     public abstract JSONObject createJSON();
 
 
