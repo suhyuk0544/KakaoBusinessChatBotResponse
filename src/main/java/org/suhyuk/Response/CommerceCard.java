@@ -46,8 +46,8 @@ public class CommerceCard extends JsonFactory {
     /**
      * @return
      */
-    @Override
-    public JSONObject createJSON() {
+
+    public JSONObject build() {
         return null;
     }
 }

@@ -52,8 +52,7 @@ public class BasicCard extends JsonFactory   {
         return this;
     }
 
-    @Override
-    public JSONObject createJSON() {
+    public JSONObject build() {
         return jsonObject;
     }
 

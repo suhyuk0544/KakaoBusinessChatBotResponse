@@ -6,9 +6,11 @@ import org.suhyuk.Abstract.CommonElement;
 public class Profile extends CommonElement {
     /**
      * @return
+     *
+     *
      */
-    @Override
-    public JSONObject createElement() {
+
+    public CommonElement commonElement() {
         return null;
     }
 }

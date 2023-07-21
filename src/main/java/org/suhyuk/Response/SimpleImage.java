@@ -8,23 +8,32 @@ import java.util.Objects;
 
 public class SimpleImage extends JsonFactory {
 
-    private final String imageUrl;
+//    private final String imageUrl;
 
-    private final String altText;
+//    private final String altText;
+//
+//    @Builder
+//    public SimpleImage(String imageUrl, String altText) {
+//        super(new JSONObject());
+//        this.imageUrl = Objects.requireNonNull(imageUrl);
+//        this.altText = Objects.requireNonNull(altText);
+//    }
 
-    @Builder
-    public SimpleImage(String imageUrl, String altText) {
+
+
+    public SimpleImage() {
         super(new JSONObject());
-        this.imageUrl = Objects.requireNonNull(imageUrl);
-        this.altText = Objects.requireNonNull(altText);
+    }
+
+    public SimpleImage setText(String imageUrl,String altText){
+        jsonObject.put("simpleText",new JSONObject().put("imageUrl",imageUrl).put("altText",altText));
+        return this;
     }
 
 
-    /**
-     * @return
-     */
-    @Override
-    public JSONObject createJSON() {
-        return new JSONObject().put("simpleText",new JSONObject().put("imageUrl",imageUrl).put("altText",altText));
+    public JSONObject build() {
+            return jsonObject;
     }
+
+
 }

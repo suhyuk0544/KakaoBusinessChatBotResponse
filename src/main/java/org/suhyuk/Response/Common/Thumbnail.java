@@ -7,7 +7,7 @@ public class Thumbnail extends CommonElement {
     /**
      * @return
      */
-    @Override
+//    @Override
     public JSONObject createElement() {
         return null;
     }

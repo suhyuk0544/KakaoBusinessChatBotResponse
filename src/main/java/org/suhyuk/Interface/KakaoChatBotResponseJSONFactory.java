@@ -4,7 +4,8 @@ import org.json.JSONObject;
 import org.suhyuk.Abstract.CommonElement;
 import org.suhyuk.Abstract.JsonFactory;
 
-public interface KakaoChatBotResponseJSONFactory {
-    JSONObject createJSON();
+public abstract class KakaoChatBotResponseJSONFactory {
+
+     public abstract KakaoChatBotResponseJSONFactory createJSON(KakaoChatBotResponseType type);
 
 }
