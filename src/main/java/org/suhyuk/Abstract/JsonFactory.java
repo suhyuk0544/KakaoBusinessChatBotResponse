@@ -1,5 +1,6 @@
 package org.suhyuk.Abstract;
 
+import lombok.NonNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
@@ -50,7 +51,6 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
      * @return Kakao Talk ChatBot Response
      */
     public static JSONObject mainJsonObject(String version,JSONArray outputs,JSONArray carousel) {
-
         JSONObject jsonObject = new JSONObject();
         JSONObject body = new JSONObject();
 
@@ -64,7 +64,17 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
 
         jsonObject.put("version",version);
         jsonObject.put("template",body);
+
         return jsonObject;
+    }
+
+    public JSONObject createCarousel(String type,JSONArray items){
+        JSONObject carousel = new JSONObject();
+
+        carousel.put("type",type);
+        carousel.put("items",items);
+
+        return carousel;
     }
 
     public JSONObject createMainJsonObject(){
