@@ -68,7 +68,7 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
         return jsonObject;
     }
 
-    public JSONObject createCarousel(String type,JSONArray items){
+    public static JSONObject createCarousel(String type,JSONArray items){
         JSONObject carousel = new JSONObject();
 
         carousel.put("type",type);
