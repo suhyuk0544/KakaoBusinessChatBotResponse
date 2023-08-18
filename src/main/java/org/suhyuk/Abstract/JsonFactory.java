@@ -47,18 +47,14 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
     /**
      * @param version 1.0 or 2.0
      * @param outputs ARRAY of JSON created with createJSON() is required
-     * @param carousel
      * @return Kakao Talk ChatBot Response
      */
-    public static JSONObject mainJsonObject(String version,JSONArray outputs,JSONArray carousel) {
+    public static JSONObject mainJsonObject(String version,JSONArray outputs) {
         JSONObject jsonObject = new JSONObject();
         JSONObject body = new JSONObject();
 
-        if (outputs.length() > 3 && outputs.length() < 1 && carousel.length() > 10)
+        if (outputs.length() > 3 && outputs.length() < 1)
             throw new IllegalArgumentException();
-
-        if (carousel != null)
-            body.put("quickReplies",carousel);
 
         body.put("outputs",outputs);
 
@@ -68,10 +64,10 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
         return jsonObject;
     }
 
-    public static JSONObject createCarousel(String type,JSONArray items){
+    public static JSONObject createCarousel(KakaoChatBotResponseType type,JSONArray items){
         JSONObject carousel = new JSONObject();
 
-        carousel.put("type",type);
+        carousel.put("type", type.getType());
         carousel.put("items",items);
 
         return carousel;
