@@ -5,10 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
 import org.suhyuk.Interface.KakaoChatBotResponseType;
-import org.suhyuk.Response.BasicCard;
-import org.suhyuk.Response.SimpleImage;
-import org.suhyuk.Response.SimpleText;
-import org.suhyuk.Response.SkillVersion;
+import org.suhyuk.Response.*;
 
 public class JsonFactory extends KakaoChatBotResponseJSONFactory {
 
@@ -21,7 +18,7 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
     }
 
 
-    // 이거 switch 문 써서 관리 고고헛
+    // 이거 switch 문 써서 관리 ㄱㄱ
     @Override
     public JsonFactory createJSON(KakaoChatBotResponseType type) {
 
@@ -34,6 +31,9 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
             }
             case BasicCard -> {
                 return new BasicCard();
+            }
+            case TextCard -> {
+                return new TextCard();
             }
 
 
@@ -56,13 +56,39 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
         if (outputs.length() > 3 && outputs.length() < 1)
             throw new IllegalArgumentException();
 
+
         body.put("outputs",outputs);
+
 
         jsonObject.put("version",version);
         jsonObject.put("template",body);
 
         return jsonObject;
     }
+
+    /**
+     * @param version 1.0 or 2.0
+     * @param outputsCarousel ARRAY of JSON created with createJSON() is required
+     * @return Kakao Talk ChatBot Response
+     */
+    public static JSONObject mainJsonObject(String version,JSONObject outputsCarousel) {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject body = new JSONObject();
+
+        if (outputsCarousel.length() < 1 || outputsCarousel.length() > 10)
+            throw new IllegalArgumentException();
+
+
+        body.put("outputs",new JSONArray().put(new JSONObject().put("carousel",outputsCarousel)));
+
+
+        jsonObject.put("version",version);
+        jsonObject.put("template",body);
+
+        return jsonObject;
+    }
+
+
 
     public static JSONObject createCarousel(KakaoChatBotResponseType type,JSONArray items){
         JSONObject carousel = new JSONObject();

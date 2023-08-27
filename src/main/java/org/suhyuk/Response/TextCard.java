@@ -1,43 +1,29 @@
 package org.suhyuk.Response;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Abstract.JsonFactory;
 
+public class TextCard extends JsonFactory {
 
-public class BasicCard extends JsonFactory   {
+    public TextCard(){super(new JSONObject());}
 
-    public BasicCard() {
-        super(new JSONObject());
-    }
-
-    public BasicCard setTitle(String title) {
-        jsonObject.put("title", title);
+    public TextCard setText(String text){
+        jsonObject.put("text",text);
         return this;
     }
 
-    public BasicCard setDescription(String description) {
-        jsonObject.put("description", description);
-        return this;
-    }
-
-    public BasicCard setThumbnail(String imageUrl) {
-        JSONObject thumbnails = new JSONObject()
-                .put("imageUrl", imageUrl);
-        jsonObject.put("thumbnail", thumbnails);
-        return this;
-    }
-
-    public BasicCard setButton(JSONArray buttons) {
+    public TextCard setButton(JSONArray buttons) {
 
         jsonObject.put("buttons",buttons);
 
         return this;
     }
 
-    public BasicCard setButton(String label, String action, String value) {
+    public TextCard setButton(String label, String action, String value) {
+
         JSONArray buttons = jsonObject.optJSONArray("buttons");
+
         if (buttons == null) {
             buttons = new JSONArray();
             jsonObject.put("buttons", buttons);
@@ -58,9 +44,8 @@ public class BasicCard extends JsonFactory   {
 
     @Override
     public String toString() {
-        return "BasicCard{" +
+        return "TextCard{" +
                 "jsonObject=" + jsonObject +
                 '}';
     }
-
 }

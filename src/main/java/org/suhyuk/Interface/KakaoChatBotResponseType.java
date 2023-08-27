@@ -7,7 +7,9 @@ public enum KakaoChatBotResponseType {
     BasicCard("basicCard"),
     CommerceCard("CommerceCard"),
     ListCard("listCard"),
+    TextCard("textCard"),
     ItemCard("itemCard");
+
     private final String type;
 
     KakaoChatBotResponseType(String type) {
