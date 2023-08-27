@@ -36,7 +36,7 @@ public class BasicCard extends JsonFactory   {
         return this;
     }
 
-    public BasicCard setButton(String label, String action, String value) {
+    public BasicCard setButton(String label, String action,String value) {
         JSONArray buttons = jsonObject.optJSONArray("buttons");
         if (buttons == null) {
             buttons = new JSONArray();
@@ -45,8 +45,11 @@ public class BasicCard extends JsonFactory   {
 
         JSONObject button = new JSONObject()
                 .put("label", label)
-                .put("action", action)
-                .put(action.equals("message") ? "messageText" : "webLinkUrl", value);
+                .put("action", action);
+
+        if (value != null) {
+            button.put(action.equals("message") ? "messageText" : "webLinkUrl", value);
+        }
         buttons.put(button);
 
         return this;
