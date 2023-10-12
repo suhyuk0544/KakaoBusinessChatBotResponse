@@ -1,6 +1,7 @@
 package org.suhyuk.Response;
 
 import lombok.Builder;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Abstract.JsonFactory;
 import org.suhyuk.Response.Common.Button;
@@ -12,40 +13,78 @@ import java.util.ArrayList;
 @Builder
 public class CommerceCard extends JsonFactory {
 
+    public CommerceCard(){super(new JSONObject());}
 
-    private final String description;
 
-    private final int price;
-
-    private final String currency;
-
-    private final int discount;
-
-    private final int discountRate;
-
-    private final int dicountedPrice;
-
-    private final ArrayList<Thumbnail> thumbnails = new ArrayList<>();
-
-    private final Profile profile;
-
-    private final ArrayList<Button> buttons = new ArrayList<>();
-
-    public CommerceCard(String description, int price, String currency, int discount, int discountRate, int dicountedPrice, Profile profile) {
-        super(new JSONObject());
-        this.description = description;
-        this.price = price;
-        this.currency = currency;
-        this.discount = discount;
-        this.discountRate = discountRate;
-        this.dicountedPrice = dicountedPrice;
-        this.profile = profile;
+    public CommerceCard setTitle(String title) {
+        jsonObject.put("title", title);
+        return this;
     }
 
+    public CommerceCard setDescription(String description){
+        jsonObject.put("description",description);
+        return this;
+    }
+
+    public CommerceCard setPrice(Integer price){
+        jsonObject.put("price",price);
+        return this;
+    }
 
     /**
-     * @return
+     * @param currency only "won"
      */
+    public CommerceCard setCurrency(String currency){
+        jsonObject.put("currency",currency);
+        return this;
+    }
+
+    public CommerceCard setDiscount(Integer discount){
+        jsonObject.put("discount",discount);
+        return this;
+    }
+
+    public CommerceCard setDiscountRateAndDiscountRate(Integer discountRate){
+        jsonObject.put("discountRate",discountRate);
+        return this;
+    }
+
+    public CommerceCard setThumbnails(ArrayList<Thumbnail> thumbnails){
+        jsonObject.put("thumbnails",thumbnails);
+        return this;
+    }
+
+    public CommerceCard setProfile(){
+//        jsonObject.put("",);
+        return this;
+    }
+
+    public CommerceCard setButton(JSONArray buttons) {
+
+        jsonObject.put("buttons",buttons);
+
+        return this;
+    }
+
+    public CommerceCard setButton(String label, String action,String value) {
+        JSONArray buttons = jsonObject.optJSONArray("buttons");
+        if (buttons == null) {
+            buttons = new JSONArray();
+            jsonObject.put("buttons", buttons);
+        }
+
+        JSONObject button = new JSONObject()
+                .put("label", label)
+                .put("action", action);
+
+        if (value != null) {
+            button.put(action.equals("message") ? "messageText" : "webLinkUrl", value);
+        }
+        buttons.put(button);
+
+        return this;
+    }
+
 
     public JSONObject build() {
         return null;

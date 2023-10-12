@@ -17,7 +17,6 @@ public class JsonFactory extends KakaoChatBotResponseJSONFactory {
         this.jsonObject = jsonObject;
     }
 
-
     // 이거 switch 문 써서 관리 ㄱㄱ
     @Override
     public JsonFactory createJSON(KakaoChatBotResponseType type) {

@@ -6,7 +6,8 @@ import org.json.JSONObject;
 import org.suhyuk.Abstract.JsonFactory;
 
 
-public class BasicCard extends JsonFactory   {
+public class BasicCard extends JsonFactory{
+
 
     public BasicCard() {
         super(new JSONObject());
@@ -29,7 +30,7 @@ public class BasicCard extends JsonFactory   {
         return this;
     }
 
-    public BasicCard setButton(JSONArray buttons) {
+    public BasicCard setButtons(JSONArray buttons) {
 
         jsonObject.put("buttons",buttons);
 
