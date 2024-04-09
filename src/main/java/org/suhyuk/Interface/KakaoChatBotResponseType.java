@@ -1,5 +1,7 @@
 package org.suhyuk.Interface;
 
+import org.suhyuk.Response.Common.ListItem;
+
 public enum KakaoChatBotResponseType {
 
     SimpleText("simpleText"),
@@ -8,8 +10,10 @@ public enum KakaoChatBotResponseType {
     CommerceCard("CommerceCard"),
     ListCard("listCard"),
     TextCard("textCard"),
-    ItemCard("itemCard");
-
+    ItemCard("itemCard"),
+    Button("button"),
+    ListItem("listitem"),
+    Profile("profile");
     private final String type;
 
     KakaoChatBotResponseType(String type) {

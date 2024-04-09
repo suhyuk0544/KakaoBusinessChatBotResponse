@@ -3,13 +3,11 @@ package org.suhyuk.Response;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
 
 
-public class BasicCard extends JsonFactory{
+public class BasicCard extends JsonOutPutsFactory {
 
-
-    public BasicCard() {
+    BasicCard() {
         super(new JSONObject());
     }
 
@@ -30,31 +28,14 @@ public class BasicCard extends JsonFactory{
         return this;
     }
 
-    public BasicCard setButtons(JSONArray buttons) {
+    public BasicCard setButton(JSONArray buttons) {
 
         jsonObject.put("buttons",buttons);
 
         return this;
     }
 
-    public BasicCard setButton(String label, String action,String value) {
-        JSONArray buttons = jsonObject.optJSONArray("buttons");
-        if (buttons == null) {
-            buttons = new JSONArray();
-            jsonObject.put("buttons", buttons);
-        }
 
-        JSONObject button = new JSONObject()
-                .put("label", label)
-                .put("action", action);
-
-        if (value != null) {
-            button.put(action.equals("message") ? "messageText" : "webLinkUrl", value);
-        }
-        buttons.put(button);
-
-        return this;
-    }
 
     public JSONObject build() {
         return jsonObject;

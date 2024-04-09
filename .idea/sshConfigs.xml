@@ -3,7 +3,7 @@
   <component name="SshConfigs">
     <configs>
       <sshConfig authType="OPEN_SSH" host="localhost" id="1315df06-8da2-42e0-ad2c-c29a6fb88a8c" port="22" nameFormat="DESCRIPTIVE" username="기숙사10" useOpenSSHConfig="true" />
-      <sshConfig authType="OPEN_SSH" host="localhost" id="c1e82a60-b5a8-4fe5-99c8-b7b6ec3970e2" port="22" nameFormat="DESCRIPTIVE" username="suhyuk" useOpenSSHConfig="true" />
+      <sshConfig authType="PASSWORD" host="49.236.136.208" id="c1e82a60-b5a8-4fe5-99c8-b7b6ec3970e2" port="33333" nameFormat="DESCRIPTIVE" username="root" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>

@@ -1,33 +1,35 @@
 package org.suhyuk;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
-import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
+import org.suhyuk.Response.JsonOutPutsFactory;
 import org.suhyuk.Interface.KakaoChatBotResponseType;
 import org.suhyuk.Response.BasicCard;
-import org.suhyuk.Response.SimpleText;
-
-import java.security.Signature;
-
+import org.suhyuk.Response.CommerceCard;
+import org.suhyuk.Response.Common.Button;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        KakaoChatBotResponseJSONFactory kakaoChatBotResponseJSONFactory = new JsonFactory();
+        JsonOutPutsFactory json = new JsonOutPutsFactory();
 
-        BasicCard basicCard = (BasicCard) kakaoChatBotResponseJSONFactory.createJSON(KakaoChatBotResponseType.BasicCard);
+        CommerceCard commerceCard = (CommerceCard) json.createJSON(KakaoChatBotResponseType.CommerceCard);
 
-        JSONObject jsonObject = basicCard.setDescription("s")
+//        JSONObject jsonObject = commerceCard.setButton(new Button("","","",null), Button.createButton("","","",null))
+//                .build();
+
+//        System.out.println(jsonObject.toString());
+
+        BasicCard basicCard = (BasicCard) json.createJSON(KakaoChatBotResponseType.BasicCard);
+
+
+        JSONObject jsonObject1 = basicCard.setButton(new JSONArray())
                 .build();
-        System.out.println(kakaoChatBotResponseJSONFactory.toString());
-        System.out.println(jsonObject.toString());
-
-        SimpleText simpleText = (SimpleText) kakaoChatBotResponseJSONFactory.createJSON(KakaoChatBotResponseType.SimpleText);
-
-        System.out.println(simpleText.setText("s").build().toString());
 
 
+        System.out.println(jsonObject1.toString());
     }
+
 
 }

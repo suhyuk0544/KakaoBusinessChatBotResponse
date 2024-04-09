@@ -3,23 +3,17 @@ package org.suhyuk.Response;
 import lombok.Builder;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
 import org.suhyuk.Response.Common.Button;
-import org.suhyuk.Response.Common.Profile;
 import org.suhyuk.Response.Common.Thumbnail;
 
-import java.util.ArrayList;
-
 @Builder
-public class CommerceCard extends JsonFactory {
-
-    public CommerceCard(){super(new JSONObject());}
+public class CommerceCard extends JsonOutPutsFactory {
 
 
-    public CommerceCard setTitle(String title) {
-        jsonObject.put("title", title);
-        return this;
+    CommerceCard() {
+        super(new JSONObject());
     }
+
 
     public CommerceCard setDescription(String description){
         jsonObject.put("description",description);
@@ -31,9 +25,6 @@ public class CommerceCard extends JsonFactory {
         return this;
     }
 
-    /**
-     * @param currency only "won"
-     */
     public CommerceCard setCurrency(String currency){
         jsonObject.put("currency",currency);
         return this;
@@ -44,49 +35,33 @@ public class CommerceCard extends JsonFactory {
         return this;
     }
 
-    public CommerceCard setDiscountRateAndDiscountRate(Integer discountRate){
-        jsonObject.put("discountRate",discountRate);
-        return this;
-    }
-
-    public CommerceCard setThumbnails(ArrayList<Thumbnail> thumbnails){
-        jsonObject.put("thumbnails",thumbnails);
-        return this;
-    }
-
-    public CommerceCard setProfile(){
-//        jsonObject.put("",);
-        return this;
-    }
-
-    public CommerceCard setButton(JSONArray buttons) {
-
-        jsonObject.put("buttons",buttons);
+    public CommerceCard setThumbnail(String imageUrl){
+        JSONObject thumbnails = new JSONObject()
+                .put("imageUrl", imageUrl);
+        jsonObject.put("thumbnail", thumbnails);
 
         return this;
     }
 
-    public CommerceCard setButton(String label, String action,String value) {
-        JSONArray buttons = jsonObject.optJSONArray("buttons");
-        if (buttons == null) {
-            buttons = new JSONArray();
+    public CommerceCard setThumbnail(Thumbnail thumbnail){
+        jsonObject.put("thumbnails",thumbnail);
+        return this;
+    }
+
+    public CommerceCard setButton(Button...buttons){
+
+        if (buttons.length < 1 || buttons.length > 3)
+            throw new ArrayIndexOutOfBoundsException("buttons can not");
+
+        JSONArray button = jsonObject.optJSONArray("buttons");
+
+        if (button == null)
             jsonObject.put("buttons", buttons);
-        }
-
-        JSONObject button = new JSONObject()
-                .put("label", label)
-                .put("action", action);
-
-        if (value != null) {
-            button.put(action.equals("message") ? "messageText" : "webLinkUrl", value);
-        }
-        buttons.put(button);
 
         return this;
     }
-
 
     public JSONObject build() {
-        return null;
+        return jsonObject;
     }
 }

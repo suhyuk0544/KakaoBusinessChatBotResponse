@@ -2,9 +2,8 @@ package org.suhyuk.Response;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
 
-public class TextCard extends JsonFactory {
+public class TextCard extends JsonOutPutsFactory {
 
     public TextCard(){super(new JSONObject());}
 

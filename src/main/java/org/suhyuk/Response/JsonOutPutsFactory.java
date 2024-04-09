@@ -1,40 +1,45 @@
-package org.suhyuk.Abstract;
+package org.suhyuk.Response;
 
-import lombok.NonNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.suhyuk.Interface.KakaoChatBotResponseJSONFactory;
 import org.suhyuk.Interface.KakaoChatBotResponseType;
-import org.suhyuk.Response.*;
 
-public class JsonFactory extends KakaoChatBotResponseJSONFactory {
+public class JsonOutPutsFactory extends KakaoChatBotResponseJSONFactory {
 
-    protected final JSONObject jsonObject;
+    final JSONObject jsonObject;
 
-    public JsonFactory(){this.jsonObject = new JSONObject();}
+    public JsonOutPutsFactory(){this.jsonObject = new JSONObject();}
 
-    protected JsonFactory(JSONObject jsonObject) {
+    protected JsonOutPutsFactory(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
     }
 
     // 이거 switch 문 써서 관리 ㄱㄱ
     @Override
-    public JsonFactory createJSON(KakaoChatBotResponseType type) {
+    public JsonOutPutsFactory createJSON(KakaoChatBotResponseType type) {
 
         switch (type){
+
             case SimpleText -> {
                 return new SimpleText();
             }
+
             case SimpleImage -> {
                 return new SimpleImage();
             }
+
             case BasicCard -> {
                 return new BasicCard();
             }
+
             case TextCard -> {
                 return new TextCard();
             }
 
+            case CommerceCard -> {
+                return new CommerceCard();
+            }
 
             default -> {
                 return null;

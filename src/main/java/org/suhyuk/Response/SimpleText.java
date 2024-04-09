@@ -1,13 +1,8 @@
 package org.suhyuk.Response;
 
-import lombok.Builder;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
 
-import javax.print.attribute.standard.JobStateReasons;
-import java.util.Objects;
-
-public class SimpleText extends JsonFactory {
+public class SimpleText extends JsonOutPutsFactory {
 
     public SimpleText() {
         super(new JSONObject());

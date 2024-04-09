@@ -1,38 +1,49 @@
 package org.suhyuk.Response.Common;
 
 import lombok.Builder;
+import org.json.JSONArray;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.CommonElement;
+import org.suhyuk.Response.BasicCard;
 import org.suhyuk.Response.MessageText;
 
+import java.util.Map;
 
-public class Button extends CommonElement {
 
-    private final String label;
+public class Button extends CommonElementFactory {
 
-    private final String action;
-
-    private final String webLinkUrl;
-
-    private final MessageText messageText;
-
-    @Builder
-    public Button(String label, String action, String webLinkUrl, MessageText messageText) {
-        this.label = label;
-        this.action = action;
-        this.webLinkUrl = webLinkUrl;
-        this.messageText = messageText;
+    Button() {
+        super(new JSONObject());
     }
 
-    /**
-     * @return
-     */
+    public Button setLabel(String label){
 
-    public CommonElement createElement() {
-        JSONObject jsonObject = new JSONObject();
+        if(label.length() > 14)
+            throw new IllegalArgumentException();
 
+        jsonObject.put("label", label);
 
-
-        return null;
+        return this;
     }
+
+
+    public Button setAction(String action,String value){
+
+        if (value != null) {
+            jsonObject.put(action.equals("message") ? "messageText" : "webLinkUrl", value);
+        }
+
+        return this;
+    }
+
+    public <T> Button setExtra(Map<String,T> extra){
+
+        jsonObject.put("extra",extra);
+
+        return this;
+    }
+
+    public JSONObject build(){
+        return jsonObject;
+    }
+
 }

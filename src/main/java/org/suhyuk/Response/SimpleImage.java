@@ -1,12 +1,8 @@
 package org.suhyuk.Response;
 
-import lombok.Builder;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
 
-import java.util.Objects;
-
-public class SimpleImage extends JsonFactory {
+public class SimpleImage extends JsonOutPutsFactory {
 
 //    private final String imageUrl;
 

@@ -1,14 +1,11 @@
 package org.suhyuk.Response;
 
-import lombok.Builder;
 import org.json.JSONObject;
-import org.suhyuk.Abstract.JsonFactory;
-import org.suhyuk.Response.Common.Button;
 import org.suhyuk.Response.Common.ListItem;
 
 import java.util.ArrayList;
 
-public class ListCard extends JsonFactory {
+public class ListCard extends JsonOutPutsFactory {
 
 //    private final ListItem header;
 //
